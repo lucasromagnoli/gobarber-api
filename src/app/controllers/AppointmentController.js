@@ -62,6 +62,15 @@ class AppointmentController {
     }
 
     /**
+     * Check if provider_id is equal user_id
+     */
+
+    if (isProvider.id === req.userId) {
+      return res
+        .status(401)
+        .json({ error: "You can't create appointments for yourself" });
+    }
+    /**
      * Check for past dates
      */
     const hourStart = startOfHour(parseISO(date));
