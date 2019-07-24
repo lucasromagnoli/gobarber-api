@@ -137,14 +137,14 @@ class AppointmentController {
     }
 
     const dateWithSub = subHours(appointment.date, 2);
-
-    if (isBefore(dateWithSub, new Date())) {
+    const dateNow = new Date();
+    if (isBefore(dateWithSub, dateNow)) {
       return res
         .status(401)
         .json({ error: 'You can only cancel appointments 2 hour in advance.' });
     }
 
-    appointment.canceled_at = new Date();
+    appointment.canceled_at = dateNow;
 
     await appointment.save();
 
