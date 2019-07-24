@@ -27,7 +27,7 @@ class ScheduleController {
       oder: ['date'],
     });
 
-    res.json(appointments);
+    return res.json(appointments);
   }
 }
 
